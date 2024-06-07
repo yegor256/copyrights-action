@@ -38,7 +38,13 @@ console.log(`Globs to use: [${globs.join(', ')}]`);
 const ignore = (core.getInput('ignore') || 'node_modules/**').split(/ +/);
 console.log(`Globs to ignore: [${ignore.join(', ')}]`);
 
-const punch = Array.from(fs.readFileSync(license, 'utf8').matchAll(/(Copyright .+)\n/g))[0][1];
+const match = Array.from(
+  (fs.readFileSync(license, 'utf8') + "\n").matchAll(/(Copyright .+)\n/g)
+)[0];
+if (match == undefined) {
+  throw `Can't find "Copyright" line in ${license}`
+}
+const punch = match[1];
 if (punch == undefined) {
   throw `Can't find "Copyright" line in ${license}`
 }
@@ -46,12 +52,12 @@ console.log(`Punch line is: "${punch}"`);
 
 var scope = [];
 for (const g of globs) {
-  glob.sync(g).forEach((f) => {
+  glob.sync(g, { cwd: home, dot: true }).forEach((f) => {
     scope.push(f);
   });
 }
 for (const g of ignore) {
-  glob.sync(g).forEach((f) => {
+  glob.sync(g, { cwd: home, dot: true }).forEach((f) => {
     scope = scope.filter((i) => {
       if (i == f) {
         return false;
@@ -63,10 +69,10 @@ for (const g of ignore) {
 
 var errors = 0;
 for (const f of scope) {
-  if (fs.readFileSync(f, 'utf8').includes(punch)) {
-    console.log(`Found: ${f}`);
+  if (fs.readFileSync(path.resolve(home, f), 'utf8').includes(punch)) {
+    console.log(`OK: ${f}`);
   } else {
-    console.log(`Missing: ${f}`);
+    console.log(`Missed: ${f}`);
     errors += 1;
   }
 }
@@ -76,4 +82,4 @@ if (errors != 0) {
   process.exit(1);
 }
 
-console.log(`No errors found in ${scope.length} files`);
+console.log(`Errors not found in ${scope.length} files`);
