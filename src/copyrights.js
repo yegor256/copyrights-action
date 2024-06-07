@@ -70,9 +70,9 @@ for (const f of scope) {
   }
 }
 
-if (errors == 0) {
-  console.log(`No errors found`);
-} else {
-  console.log(`${errors} errors found`);
+if (errors != 0) {
+  console.log(`${errors} errors found in ${scope.size} files`);
   process.exit(1);
 }
+
+console.log(`No errors found in ${scope.size} files`);

@@ -26,6 +26,7 @@ jobs:
             **/*.xml
           exclude: >-
             target/**
+            node_modules/**/*.js
 ```
 
 It will find the copyright punch line in the `LICENSE.txt` and then

@@ -1,0 +1,5 @@
+--source=.
+--verbose
+--exclude=node_module/**/*
+--rule min-words:16
+--rule max-estimate:90
