@@ -16,6 +16,10 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - run: npm install
       - uses: yegor256/copyrights-action@0.0.1
         with:
           license: LICENSE.txt
