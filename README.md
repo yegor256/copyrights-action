@@ -15,7 +15,7 @@ jobs:
   copyrights:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
       - uses: yegor256/copyrights-action@0.0.1
         with:
           license: LICENSE.txt
