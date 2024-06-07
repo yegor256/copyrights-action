@@ -20,22 +20,22 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 ---
-docker:
-  image: yegor256/rultor-image:1.23.1
-assets:
-  npmrc: yegor256/home#assets/npmrc
-install: |
-  npm install --no-color
-  pdd -f /dev/null -v
-release:
-  pre: false
-  script: |
-    [[ "${tag}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || exit -1
-    sed -i "s/0\.0\.0/${tag}/" package.json
-    npm test --no-color
-    git commit -am "set version to ${tag}"
-    chmod 600 ../npmrc
-    npm publish --no-color --userconfig=../npmrc
-merge:
-  script: |-
-    npm test --no-color
+name: npm
+'on':
+  push:
+  pull_request:
+jobs:
+  npm:
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, macos-12]
+        java: [17]
+        node: [16]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm install --no-color
+      - run: npm test --no-color
