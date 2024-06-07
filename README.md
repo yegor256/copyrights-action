@@ -17,21 +17,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: yegor256/copyrights-action@0.0.3
-        with:
-          license: LICENSE.txt
-          globs: >-
-            **/*.java
-            **/*.py
-            Makefile
-            **/*.xml
-          exclude: >-
-            target/**
-            node_modules/**/*.js
 ```
 
 It will find the copyright punch line in the `LICENSE.txt` and then
 will try to find its presence in all source code files. If at least one
 of them doesn't have the punch line, the plugin will raise an error.
+A more fine-grained configuration is also possible:
+
+```yaml
+- uses: yegor256/copyrights-action@0.0.3
+  with:
+    license: LICENSE.txt
+    globs: >-
+      **/*.java
+      **/*.py
+      Makefile
+      **/*.xml
+    exclude: >-
+      target/**
+      node_modules/**/*.js
+```
+
+However, it is advised to stay with the defaults.
 
 ## How to Contribute
 
