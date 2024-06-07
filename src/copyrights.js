@@ -24,17 +24,18 @@
 
 'use strict';
 
+const core = require('@actions/core');
 const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 
 const home = path.resolve(process.env['GITHUB_WORKSPACE'] || '.');
 console.log(`The directory to scan: "${home}"`);
-const license = path.resolve(home, process.env['INPUT_LICENSE'] || 'LICENSE.txt');
+const license = path.resolve(home, core.getInput('license') || 'LICENSE.txt');
 console.log(`The license file: "${license}"`);
-const globs = (process.env['INPUT_GLOBS'] || '**/*.js').split(/ +/);
+const globs = (core.getInput('globs') || '**/*.js').split(/ +/);
 console.log(`Globs to use: [${globs.join(', ')}]`);
-const ignore = (process.env['INPUT_IGNORE'] || 'node_modules/**').split(/ +/);
+const ignore = (core.getInput('ignore') || 'node_modules/**').split(/ +/);
 console.log(`Globs to ignore: [${ignore.join(', ')}]`);
 
 const punch = Array.from(fs.readFileSync(license, 'utf8').matchAll(/(Copyright .+)\n/g))[0][1];
