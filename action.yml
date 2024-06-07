@@ -40,6 +40,9 @@ inputs:
       Dockerfile
       Makefile
       Rakefile
+      **/*.js
+      **/*.cpp
+      **/*.h
       **/*.sh
       **/*.py
       **/*.java
