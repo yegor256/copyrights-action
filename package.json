@@ -12,7 +12,7 @@
     "github",
     "console"
   ],
-  "main": "index",
+  "main": "copyrights",
   "bin": {
     "copyrights": "./src/copyrights.js"
   },

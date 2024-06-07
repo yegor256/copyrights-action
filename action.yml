@@ -27,7 +27,7 @@ branding:
   color: orange
 runs:
   using: 'node20'
-  main: 'src/index.js'
+  main: 'src/copyrights.js'
 inputs:
   license:
     description: 'The file with a license'
