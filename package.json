@@ -1,0 +1,39 @@
+{
+  "name": "copyrights-action",
+  "version": "0.0.0",
+  "author": "Yegor Bugayenko <yegor256@gmail.com> (https://www.yegor256.com/)",
+  "license": "MIT",
+  "repository": "yegor256/copyrights-action",
+  "description": "A GitHub Action that checks the presence of copyright notices in all text files",
+  "homepage": "https://github.com/yegor256/copyrights-action",
+  "keywords": [
+    "cli",
+    "command",
+    "github",
+    "console"
+  ],
+  "main": "index",
+  "bin": {
+    "copyrights": "./src/copyrights.js"
+  },
+  "engines": {
+    "node": ">6.0",
+    "npm": ">8.0"
+  },
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "dependencies": {
+    "colors": "1.4.0",
+    "node": "22.1.0"
+  },
+  "devDependencies": {
+    "eslint": "9.2.0",
+    "eslint-config-google": "0.14.0",
+    "mocha": "10.4.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  }
+}
