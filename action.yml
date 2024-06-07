@@ -40,6 +40,9 @@ inputs:
       Dockerfile
       Makefile
       Rakefile
+      **/*.ini
+      **/*.g4
+      **/*.groovy
       **/*.js
       **/*.cpp
       **/*.h
@@ -53,6 +56,8 @@ inputs:
       **/*.rb
       **/*.xml
       **/*.xsl
+      **/*.xsd
+      **/*.properties
       **/*.html
   ignore:
     description: 'Globs to exclude'
