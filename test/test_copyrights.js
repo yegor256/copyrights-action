@@ -28,7 +28,10 @@ const execSync = require('child_process').execSync;
 
 function runSync(env) {
   try {
-    return execSync(`node ${path.resolve('./src/copyrights.js')}`);
+    return execSync(
+      `node ${path.resolve('./src/copyrights.js')}`,
+      Object.assign({}, process.env, env)
+    );
   } catch (ex) {
     console.log(ex);
     console.log(ex.stdout.toString());
@@ -40,6 +43,12 @@ describe('copyrights', function() {
   it('finds no errors', function(done) {
     const stdout = runSync({});
     assert(stdout.includes('No errors found'), stdout);
+    done();
+  });
+
+  it('finds errors', function(done) {
+    const stdout = runSync({'GITHUB_WORKSPACE': 'node_modules'});
+    assert(stdout.includes('errors found'), stdout);
     done();
   });
 });
