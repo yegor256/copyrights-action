@@ -1,5 +1,5 @@
 --source=.
 --verbose
---exclude=node_module/**/*
+--exclude=node_modules/**/*
 --rule min-words:16
 --rule max-estimate:90
