@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - uses: yegor256/copyrights-action@0.0.3
+      - uses: yegor256/copyrights-action@0.0.4
 ```
 
 It will find the copyright punch line in the `LICENSE.txt` and then
@@ -25,7 +25,7 @@ of them doesn't have the punch line, the plugin will raise an error.
 A more fine-grained configuration is also possible:
 
 ```yaml
-- uses: yegor256/copyrights-action@0.0.3
+- uses: yegor256/copyrights-action@0.0.4
   with:
     license: LICENSE.txt
     globs: >-
