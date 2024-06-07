@@ -29,7 +29,7 @@
   ],
   "dependencies": {
     "glob": "10.4.1",
-    "node": "22.1.0"
+    "node": "22.2.0"
   },
   "devDependencies": {
     "eslint": "^9.4.0",
