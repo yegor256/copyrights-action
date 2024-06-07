@@ -25,16 +25,15 @@
     "linux"
   ],
   "dependencies": {
-    "colors": "1.4.0",
     "glob": "10.4.1",
     "node": "22.1.0"
   },
   "devDependencies": {
-    "eslint": "9.2.0",
-    "eslint-config-google": "0.14.0",
+    "eslint": "^9.4.0",
     "mocha": "10.4.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "eslint": "eslint"
   }
 }
