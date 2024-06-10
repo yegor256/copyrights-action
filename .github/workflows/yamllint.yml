@@ -35,4 +35,3 @@ jobs:
             .github/workflows/*.yml
             action.yml
             .rultor.yml
-
