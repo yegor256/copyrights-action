@@ -30,3 +30,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: >-
+            .github/workflows/*.yml
+            action.yml
+            .rultor.yml
+
