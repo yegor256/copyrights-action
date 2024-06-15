@@ -50,6 +50,9 @@ inputs:
       **/*.py
       **/*.rs
       **/*.ts
+      **/*.tex
+      **/*.cls
+      **/*.bib
       **/*.yaml
       **/*.yml
       **/*.java
