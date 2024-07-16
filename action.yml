@@ -37,35 +37,36 @@ inputs:
     description: 'Globs to check'
     required: true
     default: >-
+      **/*.asm
+      **/*.bib
+      **/*.cls
+      **/*.cpp
+      **/*.dtx
+      **/*.g4
+      **/*.groovy
+      **/*.h
+      **/*.html
+      **/*.ini
+      **/*.ins
+      **/*.java
+      **/*.js
+      **/*.lua
+      **/*.pl
+      **/*.properties
+      **/*.py
+      **/*.rb
+      **/*.rs
+      **/*.sh
+      **/*.tex
+      **/*.ts
+      **/*.xml
+      **/*.xsd
+      **/*.xsl
+      **/*.yaml
+      **/*.yml
       Dockerfile
       Makefile
       Rakefile
-      **/*.ini
-      **/*.g4
-      **/*.groovy
-      **/*.js
-      **/*.cpp
-      **/*.h
-      **/*.sh
-      **/*.py
-      **/*.rs
-      **/*.ts
-      **/*.tex
-      **/*.cls
-      **/*.bib
-      **/*.dtx
-      **/*.ins
-      **/*.pl
-      **/*.lua
-      **/*.yaml
-      **/*.yml
-      **/*.java
-      **/*.rb
-      **/*.xml
-      **/*.xsl
-      **/*.xsd
-      **/*.properties
-      **/*.html
   ignore:
     description: 'Globs to exclude'
     required: false
