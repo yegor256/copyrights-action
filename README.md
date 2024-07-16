@@ -33,7 +33,7 @@ A more fine-grained configuration is also possible:
       **/*.py
       Makefile
       **/*.xml
-    exclude: >-
+    ignore: >-
       target/**
       node_modules/**/*.js
 ```
