@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "eslint": "^9.4.0",
-    "mocha": "10.7.3"
+    "mocha": "10.8.0"
   },
   "scripts": {
     "test": "mocha",
