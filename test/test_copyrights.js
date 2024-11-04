@@ -52,7 +52,7 @@ describe('copyrights', function() {
       fs.writeFileSync(path.resolve(folder, 'LICENSE.txt'), 'Copyright 2024');
       fs.writeFileSync(path.resolve(folder, '.hello.js'), 'no copyright');
       const stdout = runSync({'GITHUB_WORKSPACE': folder});
-      assert(stdout.includes('errors found'), stdout);
+      assert(stdout.includes('Errors: '), stdout);
       done();
     });
   });

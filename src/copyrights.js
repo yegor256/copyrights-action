@@ -67,18 +67,18 @@ for (const g of ignore) {
   });
 }
 
-var errors = 0;
+const errors = [];
 for (const f of scope) {
   if (fs.readFileSync(path.resolve(home, f), 'utf8').includes(punch)) {
     console.log(`OK: ${f}`);
   } else {
     console.log(`Missed: ${f}`);
-    errors += 1;
+    errors.push(f);
   }
 }
 
 if (errors != 0) {
-  console.log(`${errors} errors found in ${scope.length} files`);
+  console.log(`Total: ${scope.length}\nErrors: ${errors.length}\nIn files:\n${errors.join('\n')}`);
   process.exit(1);
 }
 
