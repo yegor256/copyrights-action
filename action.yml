@@ -72,3 +72,5 @@ inputs:
     required: false
     default: >-
       target/**
+      node_modules/**
+
