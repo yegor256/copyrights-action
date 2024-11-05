@@ -32,9 +32,9 @@ jobs:
   npm:
     strategy:
       matrix:
-        os: [ubuntu-22.04, macos-12]
+        os: [ubuntu-24.04, macos-13]
         java: [17]
-        node: [16]
+        node: [20]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
