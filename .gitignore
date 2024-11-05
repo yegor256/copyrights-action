@@ -1,1 +1,4 @@
 .DS_Store
+node_modules/node/
+node_modules/node-bin-setup/
+node_modules/.bin/
