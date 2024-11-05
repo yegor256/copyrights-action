@@ -42,12 +42,8 @@ However, it is advised to stay with the defaults.
 
 ## How to Contribute
 
-In order to test this action, just run:
-
-```bash
-make test
-```
-
-This should build a new Docker image and then try to use it
-in order to render a simple `test.tex` document. You need to have
-[Docker](https://docs.docker.com/get-docker/) installed.
+If you want to contribute yourself, make a fork, then create a branch,
+then run `npm test` in the root directory.
+It should compile everything without errors. If not, submit an issue and wait.
+Otherwise, make your changes and then run `npm test` again. If the build is
+still clean, submit a pull request.
