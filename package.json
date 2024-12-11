@@ -30,7 +30,7 @@
   "dependencies": {
     "@actions/core": "1.11.1",
     "glob": "11.0.0",
-    "node": "23.3.0"
+    "node": "23.4.0"
   },
   "devDependencies": {
     "eslint": "9.16.0",
