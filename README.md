@@ -8,7 +8,7 @@ in all text files in the repository. Use it like this:
 
 ```yaml
 name: copyrights
-on:
+'on':
   push:
   pull_request:
 jobs:
