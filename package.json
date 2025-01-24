@@ -33,7 +33,7 @@
     "node": "23.6.1"
   },
   "devDependencies": {
-    "eslint": "9.18.0",
+    "eslint": "9.19.0",
     "mocha": "11.1.0"
   },
   "scripts": {
