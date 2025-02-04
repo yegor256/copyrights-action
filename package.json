@@ -1,13 +1,22 @@
 {
-  "name": "copyrights-action",
-  "version": "0.0.0",
   "author": "Yegor Bugayenko <yegor256@gmail.com> (https://www.yegor256.com/)",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "yegor256/copyrights-action"
+  "bin": {
+    "copyrights": "./src/copyrights.js"
+  },
+  "dependencies": {
+    "@actions/core": "1.11.1",
+    "glob": "11.0.1",
+    "node": "23.6.1"
   },
   "description": "A GitHub Action that checks the presence of copyright notices in all text files",
+  "devDependencies": {
+    "eslint": "9.19.0",
+    "mocha": "11.1.0"
+  },
+  "engines": {
+    "node": ">6.0",
+    "npm": ">8.0"
+  },
   "homepage": "https://github.com/yegor256/copyrights-action",
   "keywords": [
     "cli",
@@ -15,29 +24,20 @@
     "github",
     "console"
   ],
+  "license": "MIT",
   "main": "copyrights",
-  "bin": {
-    "copyrights": "./src/copyrights.js"
-  },
-  "engines": {
-    "node": ">6.0",
-    "npm": ">8.0"
-  },
+  "name": "copyrights-action",
   "os": [
     "darwin",
     "linux"
   ],
-  "dependencies": {
-    "@actions/core": "1.11.1",
-    "glob": "11.0.1",
-    "node": "23.6.1"
-  },
-  "devDependencies": {
-    "eslint": "9.19.0",
-    "mocha": "11.1.0"
+  "repository": {
+    "type": "git",
+    "url": "yegor256/copyrights-action"
   },
   "scripts": {
-    "test": "mocha",
-    "eslint": "eslint"
-  }
+    "eslint": "eslint",
+    "test": "mocha"
+  },
+  "version": "0.0.0"
 }
