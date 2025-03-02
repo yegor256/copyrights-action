@@ -1,4 +1,6 @@
 .DS_Store
-node_modules/node/
-node_modules/node-bin-setup/
+.idea/
+node_modules/
 node_modules/.bin/
+node_modules/node-bin-setup/
+node_modules/node/
