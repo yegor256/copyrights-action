@@ -3,11 +3,25 @@
  * SPDX-License-Identifier: MIT
  */
 
-module.exports = {
-  rules: {
+const { configs } = require('@eslint/js');
+
+module.exports = [
+  {
+    ignores: ['node_modules/'],
+  },
+  {
+    ...configs.all,
+    files: ['**/*.js'],
+    languageOptions: {
+      ecmaVersion: 2019,
+      sourceType: 'module'
+    },
+    rules: {
+      ...configs.all.rules,
     'comma-dangle': 'off',
     'indent': ['error', 2],
     'max-len': ['error', { code: 100 }],
     'no-implicit-globals': 'off'
+    }
   }
-};
+];
