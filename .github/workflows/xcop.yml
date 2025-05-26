@@ -16,4 +16,5 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
+      - run: rm -rf node_modules
       - uses: g4s8/xcop-action@master
