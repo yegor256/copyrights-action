@@ -18,10 +18,13 @@ module.exports = [
     },
     rules: {
       ...configs.all.rules,
-    'comma-dangle': 'off',
-    'indent': ['error', 2],
-    'max-len': ['error', { code: 100 }],
-    'no-implicit-globals': 'off'
+      'comma-dangle': 'off',
+      'indent': ['error', 2],
+      'max-len': ['error', { code: 100 }],
+      'no-implicit-globals': 'off',
+      'no-magic-numbers': 'off',
+      'no-undef': 'off',
+      'one-var': 'off'
     }
   }
 ];

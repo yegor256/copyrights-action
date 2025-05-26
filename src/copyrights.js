@@ -32,15 +32,15 @@ if (punch == undefined) {
 console.log(`Punch line is: "${punch}"`);
 
 var scope = [];
-for (const g of globs) {
-  glob.sync(g, { cwd: home, dot: true }).forEach((f) => {
-    scope.push(f);
+for (const gb of globs) {
+  glob.sync(gb, { cwd: home, dot: true }).forEach((file) => {
+    scope.push(file);
   });
 }
-for (const g of ignore) {
-  glob.sync(g, { cwd: home, dot: true }).forEach((f) => {
-    scope = scope.filter((i) => {
-      if (i == f) {
+for (const ig of ignore) {
+  glob.sync(ig, { cwd: home, dot: true }).forEach((file) => {
+    scope = scope.filter((inc) => {
+      if (inc === file) {
         return false;
       }
       return true;
@@ -49,21 +49,21 @@ for (const g of ignore) {
 }
 
 const errors = [];
-for (const f of scope) {
+for (const file of scope) {
   try {
-    if (fs.readFileSync(path.resolve(home, f), 'utf8').includes(punch)) {
-      console.log(`OK: ${f}`);
+    if (fs.readFileSync(path.resolve(home, file), 'utf8').includes(punch)) {
+      console.log(`OK: ${file}`);
     } else {
-      console.log(`Missed: ${f}`);
-      errors.push(f);
+      console.log(`Missed: ${file}`);
+      errors.push(file);
     }
-  } catch (e) {
-    console.log(`Error reading ${f}: ${e.message}`);
-    errors.push(f);
+  } catch (ex) {
+    console.log(`Error reading ${file}: ${ex.message}`);
+    errors.push(file);
   }
 }
 
-if (errors != 0) {
+if (errors !== 0) {
   console.log(`Total: ${scope.length}\nErrors: ${errors.length}\nIn files:\n${errors.join('\n')}`);
   process.exit(1);
 }
