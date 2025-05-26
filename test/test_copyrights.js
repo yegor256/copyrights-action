@@ -6,7 +6,7 @@
 const os = require('os');
 const path = require('path');
 const assert = require('assert');
-const spawnSync = require('child_process').spawnSync;
+const { spawnSync } = require('child_process');
 const fs = require('fs');
 
 runSync = (env) => {
@@ -14,7 +14,7 @@ runSync = (env) => {
     'node', [path.resolve('./src/copyrights.js')],
     {
       encoding : 'utf8',
-      env: Object.assign({}, process.env, env)
+      env: { ...process.env, ...env }
     }
   );
   return ret.stdout;
