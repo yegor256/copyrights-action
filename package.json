@@ -5,13 +5,14 @@
   },
   "dependencies": {
     "@actions/core": "1.11.1",
-    "glob": "11.0.1",
-    "node": "23.6.1"
+    "glob": "11.0.2",
+    "node": "24.1.0"
   },
   "description": "A GitHub Action that checks the presence of copyright notices in all text files",
   "devDependencies": {
-    "eslint": "9.19.0",
-    "mocha": "11.1.0"
+    "@eslint/js": "^9.27.0",
+    "eslint": "9.27.0",
+    "mocha": "11.5.0"
   },
   "engines": {
     "node": ">6.0",

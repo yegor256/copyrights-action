@@ -42,7 +42,7 @@ However, it is advised to stay with the defaults.
 
 ## How to Contribute
 
-If you want to contribute yourself, make a fork, then create a branch,
+If you want to contribute, make a fork, then create a branch,
 then run `npm test` in the root directory.
 It should compile everything without errors. If not, submit an issue and wait.
 Otherwise, make your changes and then run `npm test` again. If the build is

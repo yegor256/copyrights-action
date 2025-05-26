@@ -9,6 +9,7 @@ path = [
     ".gitignore",
     ".npmignore",
     ".pdd",
+    ".xcop",
     "**.json",
     "**.md",
     "**.png",
