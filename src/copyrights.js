@@ -44,14 +44,13 @@ for (const file of scope) {
   const filepath = path.resolve(home, file);
   try {
     const stats = fs.statSync(filepath);
-    if (!stats.isFile()) {
-      continue;
-    }
-    if (fs.readFileSync(filepath, 'utf8').includes(punch)) {
-      core.info(`OK: ${file}`);
-    } else {
-      core.warning(`Missed: ${file}`);
-      errors.push(file);
+    if (stats.isFile()) {
+      if (fs.readFileSync(filepath, 'utf8').includes(punch)) {
+        core.info(`OK: ${file}`);
+      } else {
+        core.warning(`Missed: ${file}`);
+        errors.push(file);
+      }
     }
   } catch (ex) {
     core.error(`Error reading ${file}: ${ex.message}`);
