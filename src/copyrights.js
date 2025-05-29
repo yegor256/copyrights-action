@@ -41,8 +41,13 @@ for (const ig of ignore) {
 
 const errors = [];
 for (const file of scope) {
+  const filepath = path.resolve(home, file);
   try {
-    if (fs.readFileSync(path.resolve(home, file), 'utf8').includes(punch)) {
+    const stats = fs.statSync(filepath);
+    if (!stats.isFile()) {
+      continue;
+    }
+    if (fs.readFileSync(filepath, 'utf8').includes(punch)) {
       core.info(`OK: ${file}`);
     } else {
       core.warning(`Missed: ${file}`);

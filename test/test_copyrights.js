@@ -39,4 +39,20 @@ describe('copyrights', () => {
       done();
     });
   });
+
+  it('ignores directories', (done) => {
+    fs.mkdtemp(path.join(os.tmpdir(), 'copyrights-'), (err, folder) => {
+      if (err) {
+        throw err;
+      }
+      fs.writeFileSync(path.resolve(folder, 'LICENSE.txt'), 'Copyright 2024-2025');
+      fs.mkdirSync(path.resolve(folder, 'subdir'));
+      fs.writeFileSync(path.resolve(folder, 'file.js'), 'Copyright 2024-2025');
+      const stdout = runSync({'GITHUB_WORKSPACE': folder, 'INPUT_GLOBS': '**'});
+      assert(stdout.includes('Errors not found'), stdout);
+      assert(stdout.includes('OK: file.js'), stdout);
+      assert(!stdout.includes('subdir'), stdout);
+      done();
+    });
+  });
 });

@@ -52,7 +52,6 @@ inputs:
     description: 'Globs to exclude'
     required: false
     default: >-
-      .git/**
       target/**
       node_modules/**
       .git/**
