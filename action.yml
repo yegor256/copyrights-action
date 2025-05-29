@@ -55,3 +55,4 @@ inputs:
       .git/**
       target/**
       node_modules/**
+      .git/**
