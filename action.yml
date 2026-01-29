@@ -22,6 +22,7 @@ inputs:
       **/*.bib
       **/*.cls
       **/*.cpp
+      **/*.css
       **/*.dtx
       **/*.g4
       **/*.groovy
@@ -32,14 +33,18 @@ inputs:
       **/*.java
       **/*.js
       **/*.lua
+      **/*.php
       **/*.pl
       **/*.properties
       **/*.py
       **/*.rb
       **/*.rs
+      **/*.scss
       **/*.sh
       **/*.tex
+      **/*.toml
       **/*.ts
+      **/*.xhtml
       **/*.xml
       **/*.xsd
       **/*.xsl
