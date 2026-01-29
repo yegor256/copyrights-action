@@ -4,7 +4,7 @@
     "copyrights": "./src/copyrights.js"
   },
   "dependencies": {
-    "@actions/core": "2.0.3",
+    "@actions/core": "3.0.0",
     "glob": "13.0.0",
     "node": "25.5.0"
   },
