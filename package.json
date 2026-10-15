@@ -5,8 +5,7 @@
   },
   "dependencies": {
     "@actions/core": "2.0.3",
-    "glob": "13.0.0",
-    "node": "25.5.0"
+    "glob": "13.0.0"
   },
   "description": "A GitHub Action that checks the presence of copyright notices in all text files",
   "devDependencies": {
@@ -15,8 +14,7 @@
     "mocha": "12.0.3"
   },
   "engines": {
-    "node": ">6.0",
-    "npm": ">8.0"
+    "node": "24.x"
   },
   "homepage": "https://github.com/yegor256/copyrights-action",
   "keywords": [
