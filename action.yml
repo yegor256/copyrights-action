@@ -7,7 +7,7 @@ branding:
   icon: alert-triangle
   color: orange
 runs:
-  using: 'node20'
+  using: 'node24'
   main: 'src/copyrights.js'
 inputs:
   license:
