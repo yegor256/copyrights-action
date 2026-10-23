@@ -7,6 +7,13 @@ docker:
 assets:
   npmrc: yegor256/home#assets/npmrc
 install: |
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash
+  export NVM_DIR="$HOME/.nvm"
+  . "$NVM_DIR/nvm.sh"
+  nvm install 24
+  ln -sf "$(which node)" /usr/local/bin/node
+  ln -sf "$(which npm)" /usr/local/bin/npm
+  node --version
   npm install --no-color
   pdd -f /dev/null -v
 release:
