@@ -1,6 +1,21 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "automerge": true,
+  "customManagers": [
+    {
+      "customType": "regex",
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "nvm-sh/nvm",
+      "description": "Update nvm in .rultor.yml",
+      "extractVersionTemplate": "^v?(?<version>.+)$",
+      "managerFilePatterns": [
+        "/(^|/)\\.rultor\\.ya?ml$/"
+      ],
+      "matchStrings": [
+        "https://raw\\.githubusercontent\\.com/nvm-sh/nvm/v(?<currentValue>[0-9]+\\.[0-9]+\\.[0-9]+[^/\\s]*)/install\\.sh"
+      ]
+    }
+  ],
   "extends": [
     "config:base"
   ],
