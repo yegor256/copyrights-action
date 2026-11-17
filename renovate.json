@@ -17,7 +17,7 @@
     }
   ],
   "extends": [
-    "config:base"
+    "config:recommended"
   ],
   "platformAutomerge": false
 }
