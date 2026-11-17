@@ -16,7 +16,7 @@ jobs:
       matrix:
         os: [ubuntu-24.04, macos-15]
         java: [17]
-        node: [20]
+        node: [24]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v6
