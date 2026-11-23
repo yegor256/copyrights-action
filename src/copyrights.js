@@ -3,10 +3,10 @@
  * SPDX-License-Identifier: MIT
  */
 
-const core = require('@actions/core');
-const fs = require('fs');
-const path = require('path');
-const glob = require('glob');
+import * as core from '@actions/core';
+import fs from 'node:fs';
+import { globSync } from 'glob';
+import path from 'node:path';
 
 const home = path.resolve(process.env.GITHUB_WORKSPACE || '.');
 core.info(`The directory to scan: "${home}"`);
@@ -31,11 +31,11 @@ core.info(`Punch line is: "${punch}"`);
 
 let scope = [];
 for (const gb of globs) {
-  const files = glob.sync(gb, { cwd: home, dot: true });
+  const files = globSync(gb, { cwd: home, dot: true });
   scope.push(...files);
 }
 for (const ig of ignore) {
-  const files = glob.sync(ig, { cwd: home, dot: true });
+  const files = globSync(ig, { cwd: home, dot: true });
   scope = scope.filter((inc) => !files.includes(inc));
 }
 

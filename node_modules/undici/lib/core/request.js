@@ -66,6 +66,10 @@ class Request {
       throw new InvalidArgumentError('upgrade must be a string')
     }
 
+    if (upgrade && !isValidHeaderValue(upgrade)) {
+      throw new InvalidArgumentError('invalid upgrade header')
+    }
+
     if (headersTimeout != null && (!Number.isFinite(headersTimeout) || headersTimeout < 0)) {
       throw new InvalidArgumentError('invalid headersTimeout')
     }
@@ -259,11 +263,77 @@ class Request {
     }
   }
 
-  onUpgrade (statusCode, headers, socket) {
+  /**
+   * @param {number|null} statusCode
+   * @param {Buffer[]|null} headers
+   * @param {import('node:stream').Duplex} socket
+   * @param {string} [statusText]
+   */
+  onUpgrade (statusCode, headers, socket, statusText = '') {
+    this.onFinally()
+
     assert(!this.aborted)
     assert(!this.completed)
 
-    return this[kHandler].onUpgrade(statusCode, headers, socket)
+    if (statusCode !== null) {
+      this.#publishUpgradeHeaders(statusCode, headers, statusText)
+    }
+
+    const result = this[kHandler].onUpgrade(statusCode, headers, socket)
+
+    if (!this.aborted) {
+      this.completed = true
+      if (statusCode !== null) {
+        this.#publishUpgradeTrailers()
+      }
+    }
+
+    return result
+  }
+
+  /**
+   * @param {number} statusCode
+   * @param {import('node:http2').IncomingHttpHeaders} headers
+   * @param {(headers: import('node:http2').IncomingHttpHeaders) => Buffer[]} parseHeaders
+   * @param {string} [statusText]
+   */
+  onUpgradeResponse (statusCode, headers, parseHeaders, statusText = '') {
+    assert(!this.aborted)
+    assert(this.completed)
+
+    if (channels.headers.hasSubscribers) {
+      this.#publishUpgradeHeaders(statusCode, parseHeaders(headers), statusText)
+    }
+    this.#publishUpgradeTrailers()
+  }
+
+  /**
+   * @param {Error} error
+   */
+  onUpgradeError (error) {
+    assert(!this.aborted)
+    assert(this.completed)
+
+    if (channels.error.hasSubscribers) {
+      channels.error.publish({ request: this, error })
+    }
+  }
+
+  /**
+   * @param {number} statusCode
+   * @param {Buffer[]} headers
+   * @param {string} statusText
+   */
+  #publishUpgradeHeaders (statusCode, headers, statusText) {
+    if (channels.headers.hasSubscribers) {
+      channels.headers.publish({ request: this, response: { statusCode, headers, statusText } })
+    }
+  }
+
+  #publishUpgradeTrailers () {
+    if (channels.trailers.hasSubscribers) {
+      channels.trailers.publish({ request: this, trailers: [] })
+    }
   }
 
   onComplete (trailers) {
@@ -346,7 +416,13 @@ function processHeader (request, key, val) {
       } else if (typeof val[i] === 'object') {
         throw new InvalidArgumentError(`invalid ${key} header`)
       } else {
-        arr.push(`${val[i]}`)
+        // Coerce primitives (and reject unsafe coercions such as functions
+        // with a crafted toString/Symbol.toPrimitive).
+        const str = `${val[i]}`
+        if (!isValidHeaderValue(str)) {
+          throw new InvalidArgumentError(`invalid ${key} header`)
+        }
+        arr.push(str)
       }
     }
     val = arr
@@ -357,16 +433,27 @@ function processHeader (request, key, val) {
   } else if (val === null) {
     val = ''
   } else {
+    // Coerce primitives (and reject unsafe coercions such as functions
+    // with a crafted toString/Symbol.toPrimitive).
     val = `${val}`
+    if (!isValidHeaderValue(val)) {
+      throw new InvalidArgumentError(`invalid ${key} header`)
+    }
   }
 
-  if (request.host === null && headerName === 'host') {
+  if (headerName === 'host') {
+    if (request.host !== null) {
+      throw new InvalidArgumentError('duplicate host header')
+    }
     if (typeof val !== 'string') {
       throw new InvalidArgumentError('invalid host header')
     }
     // Consumed by Client
     request.host = val
-  } else if (request.contentLength === null && headerName === 'content-length') {
+  } else if (headerName === 'content-length') {
+    if (request.contentLength !== null) {
+      throw new InvalidArgumentError('duplicate content-length header')
+    }
     request.contentLength = parseInt(val, 10)
     if (!Number.isFinite(request.contentLength)) {
       throw new InvalidArgumentError('invalid content-length header')
