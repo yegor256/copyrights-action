@@ -10,7 +10,7 @@
   "description": "A GitHub Action that checks the presence of copyright notices in all text files",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "eslint": "10.15.0",
+    "eslint": "10.16.0",
     "mocha": "12.0.3"
   },
   "engines": {
