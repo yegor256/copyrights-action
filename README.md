@@ -15,7 +15,7 @@ jobs:
   copyrights:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: yegor256/copyrights-action@0.0.12
 ```
 
